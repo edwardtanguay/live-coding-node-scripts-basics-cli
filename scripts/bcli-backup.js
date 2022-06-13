@@ -1,8 +1,9 @@
 import { copyFile } from 'fs';
+import * as qdat from './qtools/qdat.js';
 
 console.log('backing up .env file...');
 
-const targetFilename = 'D:\\general-backup\\' + timeStampifyFileName('.env');
+const targetFilename = 'D:\\general-backup\\' + qdat.timeStampifyFileName('.env');
 
 copyFile('.env', targetFilename, (err) => {
 	if (err)
@@ -10,33 +11,3 @@ copyFile('.env', targetFilename, (err) => {
 	console.log('finished');
 });
  
-function getCurrentDateTime() {
-    var now = new Date();
-    var year = now.getFullYear();
-    var month = now.getMonth() + 1;
-    var day = now.getDate();
-    var hour = now.getHours();
-    var minute = now.getMinutes();
-    var second = now.getSeconds();
-    if (month.toString().length == 1) {
-        month = '0' + month;
-    }
-    if (day.toString().length == 1) {
-        day = '0' + day;
-    }
-    if (hour.toString().length == 1) {
-        hour = '0' + hour;
-    }
-    if (minute.toString().length == 1) {
-        minute = '0' + minute;
-    }
-    if (second.toString().length == 1) {
-        second = '0' + second;
-    }
-    var dateTime = year + '-' + month + '-' + day + '-' + hour + '-' + minute + '-' + second;
-    return dateTime;
-}
- 
-function timeStampifyFileName(filename, idCode='backup') {
-    return `${filename}.${idCode}-${getCurrentDateTime()}`;
-}
