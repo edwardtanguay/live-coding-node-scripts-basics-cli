@@ -1,8 +1,8 @@
-const fs = require('fs');
+import { copyFile } from 'fs';
 
 console.log('backing up .env file...');
 
-fs.copyFile('.env', 'D:\\general-backup\\.env-backup', (err) => {
+copyFile('.env', 'D:\\general-backup\\.env-backup', (err) => {
 	if (err)
 		throw err;
 	console.log('finished');
